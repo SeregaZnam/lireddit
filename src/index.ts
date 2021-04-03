@@ -19,7 +19,7 @@ const main = async () => {
 
   const app = express();
   const RedisStore = connectRedis(session);
-  const redisClient = redis.createClient();
+  const redisClient = redis.createClient({ host: 'localhost', port: 6379 });
 
   redisClient.on('error', function (err) {
     console.log('Redis error: ' + err);
@@ -40,7 +40,7 @@ const main = async () => {
       },
       saveUninitialized: false,
       secret: 'qowiueojwojfalksdjoqiwueo',
-      resave: false,
+      resave: true,
     })
   );
 
